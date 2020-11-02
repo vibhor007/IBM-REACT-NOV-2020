@@ -1,8 +1,8 @@
-funtion add(...varargs){
+funtion add(){
 var sum=0;
-for(var i=0; i<varargs.length;i++){
+for(var i=0; i<arguments.length;i++){
    sum+=a[i];
 }
-
+return sum;
 }
 
