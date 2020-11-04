@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <script src="state-manager.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Calculator extends React.Component {
+            state = {
+                first: 0,
+                second: 0
+            }
+
+            onAddOperation = () => {
+                const { first, second } = this.state;
+                const action = this.props.add(first,second);
+                this.props.store.dispatch(action);
+
+            }
+
+            onSubOperartion = () => {
+
+            }
+
+
+
+            render() {
+                return (
+                    <div>
+                        <h1>Calculator</h1>
+                        <hr />
+                        <input type="number" onChange={evt => this.setState({ first: parseInt(evt.target.value) })} />
+                        <input type="number" onChange={evt => this.setState({ second: parseInt(evt.target.value) })} />
+                        <br />
+                        <input type="button" value="Add" onClick={this.onAddOperation} />
+                        <input type="button" value="Subtract" />
+                        <input type="button" value="Multiply" />
+                        <input type="button" value="Divide" />
+                        <div>[Result]</div>
+                    </div>
+                )
+            }
+        }
+
+        function calculatorReducer(currentState, action) {
+            if (action.type === 'Add') return currentState + action.payload;
+        }
+        const calActionCreators = {
+            add(val1, val2) {
+                const action = { type: 'Add', payload: first + second };
+                return action;
+            },
+            subtract(val1, val2) {
+                const action = { type: 'Subtract', payload: first - second }
+            },
+            division(val1, val2) {
+                const action = { type: 'Division', payload: first / second }
+            }
+
+        }
+        const store = StateManager.createStore(calculatorReducer);
+        function renderCalculator() {
+            ReactDOM.render(<Calculator store={store} calActionCreators={calActionCreators} />, document.getElementById("root"));
+        }
+        renderCalculator();
+        store.subscribe(renderCalculator);
+    </script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+
+</html>
