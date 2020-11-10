@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Utencils"
+    },
+    {
+      "id": 2,
+      "name": "Grocery"
+    },
+    {
+      "id": 3,
+      "name": "Stationary"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Pen",
+      "isOutOfStock": false,
+      "price": 5,
+      "category": "Stationary",
+      "description": "Good one"
+    }
+  ],
+  "cart": [
+   ]
+}
